@@ -16,12 +16,12 @@ export default function RegisterAdapter() {
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault()
-    console.log("register")
 
     await handleLogin()
     if (registerError.value === "") {
       navigate("../register-success")
     }
+    console.log("register")
   }
   return (
     <div className="flex h-screen flex-col">
