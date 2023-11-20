@@ -1,8 +1,8 @@
-import { addTask } from "../../infrastructure/state/dialogSignal"
 import {
+  addTask,
   filteredTasksSignal,
   tasksSignal,
-} from "../../infrastructure/state/taskSignals"
+} from "../../core/domain/task"
 
 export default function TaskListHeader() {
   type TaskProperty =

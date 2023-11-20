@@ -16,7 +16,7 @@ async function update(task: TaskType): Promise<void> {
   taskSucces.value = success
 }
 
-async function deleteTask(taskId: number): Promise<void> {
+async function deleteTask(taskId: number | undefined): Promise<void> {
   const success = await TaskApi.deleteTask(taskId)
   taskSucces.value = success
 }

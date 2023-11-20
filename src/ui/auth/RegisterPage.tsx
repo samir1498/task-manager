@@ -2,10 +2,7 @@ import { FormEvent, useState } from "react"
 import Navbar from "../common/NavBar"
 import { useNavigate } from "react-router-dom"
 import AuthService from "../../adapters/auth/AuthService"
-import { signal } from "@preact/signals-react"
-
-const registerSignal = signal(false)
-const registerError = signal("")
+import { registerError } from "../../core/domain/auth"
 
 export default function RegisterAdapter() {
   const [username, setUsername] = useState("samir")
@@ -15,16 +12,15 @@ export default function RegisterAdapter() {
 
   const handleLogin = async () => {
     await AuthService.register(username, password)
-    // Handle UI updates or navigation based on login success or failure
   }
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault()
-    console.log("logging in")
+    console.log("register")
 
     await handleLogin()
-    if (registerSignal.value) {
-      navigate("tasks")
+    if (registerError.value === "") {
+      navigate("../register-success")
     }
   }
   return (
@@ -73,7 +69,7 @@ export default function RegisterAdapter() {
           </div>
           <input
             type="submit"
-            value="Login"
+            value="Register"
             className="mb-4 mt-4 self-center rounded-xl border border-black bg-gray-800 p-4 py-2 text-white hover:bg-white hover:text-black focus:bg-white focus:text-black"
           />
         </form>

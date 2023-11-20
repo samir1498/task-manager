@@ -1,10 +1,7 @@
-import { TaskType } from "../../core/domain/task"
+import TaskService from "../../adapters/task/TaskService"
+import { TaskType, loadingSignal, selectedTask } from "../../core/domain/task"
 import editIcon from "./../assets/edit_icon.svg"
 import deleteIcon from "./../assets/trash_can_icon.svg"
-import { handleDeleteTask } from "../../core/use_cases/deleteTask"
-import { handleCompleteTask } from "../../core/use_cases/markAsDone"
-import { selectedTask } from "../../infrastructure/state/dialogSignal"
-import { loadingSignal } from "../../infrastructure/state/taskSignals"
 
 type TaskProps = {
   task: TaskType
@@ -25,7 +22,7 @@ export default function Task({ task }: TaskProps) {
                 src={deleteIcon}
                 alt="delete_icon"
                 className=" "
-                onClick={() => handleDeleteTask(task?.id)}
+                onClick={() => TaskService.delete(task?.id)}
               />
             </button>
             <button type="button">
@@ -49,7 +46,7 @@ export default function Task({ task }: TaskProps) {
         {task.status !== "Completed" && (
           <button
             onClick={() => {
-              handleCompleteTask(task)
+              TaskService.complete(task)
             }}
             className="mt-4 max-w-fit self-center rounded-lg bg-green-400 px-4 py-2 font-bold text-white disabled:bg-gray-500"
             disabled={loadingSignal.value}

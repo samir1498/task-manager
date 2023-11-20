@@ -1,12 +1,8 @@
 import { FormEvent, useState } from "react"
 import Navbar from "../common/NavBar"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import AuthService from "../../adapters/auth/AuthService"
-import { signal } from "@preact/signals-react"
-
-const LoginError = signal("")
-
-const loginSignal = signal(false)
+import { LoginError } from "../../core/domain/auth"
 
 export default function Home() {
   const [username, setUsername] = useState("samir")
@@ -24,7 +20,7 @@ export default function Home() {
     console.log("logging in")
 
     await handleLogin()
-    if (loginSignal.value) {
+    if (LoginError.value === "") {
       navigate("tasks")
     }
   }
@@ -71,6 +67,14 @@ export default function Home() {
                 </span>
               )}
             </div>
+            <span className="w-full pt-2 text-center">
+              <Link
+                to="register"
+                className="w-full text-center text-sm text-blue-600 underline visited:text-purple-600"
+              >
+                register?
+              </Link>
+            </span>
           </div>
           <input
             type="submit"
