@@ -25,7 +25,7 @@ const AuthApi = {
       return response.status === 200
     } catch (error) {
       console.error("Error during login:", error)
-      LoginError.value = "Somthing went worng.²:was"
+      LoginError.value = "Somthing went worng."
       return false
     }
   },
