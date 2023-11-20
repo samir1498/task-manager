@@ -1,7 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-import { TaskSchema, TaskType } from "../types/task"
-import { addTask, selectedTask } from "../signals/dialogSignal"
+import { TaskSchema, TaskType } from "../../core/domain/task"
+import { addTask, selectedTask } from "../../state/dialogSignal"
 import { createPortal } from "react-dom"
 
 type TaskDialogProps = {
