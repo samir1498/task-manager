@@ -5,8 +5,8 @@ import AuthService from "../../adapters/auth/AuthService"
 import { registerError } from "../../core/domain/auth"
 
 export default function RegisterAdapter() {
-  const [username, setUsername] = useState("samir")
-  const [password, setPassword] = useState("samir")
+  const [username, setUsername] = useState("")
+  const [password, setPassword] = useState("")
 
   const navigate = useNavigate()
 
