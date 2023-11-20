@@ -5,7 +5,10 @@ const baseURL =
   import.meta.env.MODE === "development"
     ? import.meta.env.VITE_API_BASE_URL_DEV
     : import.meta.env.VITE_API_BASE_URL_PROD
-
+console.log(
+  import.meta.env.VITE_API_BASE_URL_DEV,
+  import.meta.env.VITE_API_BASE_URL_PROD,
+)
 // Create an instance of Axios with a base URL
 const apiInstance = axios.create({
   baseURL,
