@@ -1,4 +1,4 @@
-import TasksList from "./adapters/TasksList"
+import TasksList from "./ui/task/TasksList"
 
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Home from "./ui/auth/LoginPage"

@@ -1,8 +1,12 @@
 import { FormEvent, useState } from "react"
 import Navbar from "../common/NavBar"
 import { useNavigate } from "react-router-dom"
-import { LoginError } from "../../state/authSignlas"
-import { handleLogin } from "../../core/use_cases/auth/login"
+import AuthService from "../../adapters/auth/AuthService"
+import { signal } from "@preact/signals-react"
+
+const LoginError = signal("")
+
+const loginSignal = signal(false)
 
 export default function Home() {
   const [username, setUsername] = useState("samir")
@@ -10,11 +14,17 @@ export default function Home() {
 
   const navigate = useNavigate()
 
+  const handleLogin = async () => {
+    await AuthService.login(username, password)
+    // Handle UI updates or navigation based on login success or failure
+  }
+
   async function handleSubmit(e: FormEvent) {
     e.preventDefault()
     console.log("logging in")
-    const checkLogin = await handleLogin(username, password)
-    if (checkLogin) {
+
+    await handleLogin()
+    if (loginSignal.value) {
       navigate("tasks")
     }
   }

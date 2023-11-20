@@ -1,11 +1,13 @@
 import { useEffect } from "react"
-import Navbar from "../ui/common/NavBar"
-import Task from "../ui/task/Task"
-import { filteredTasksSignal } from "../state/taskSignals"
-import { getTasks, handleAddTask, updateTask } from "../utils/taskCRUD"
-import { addTask, selectedTask } from "../state/dialogSignal"
-import TaskDialog from "../ui/task/TaskDialog"
-import TaskListHeader from "../ui/task/TaskListHeader"
+import Navbar from "../common/NavBar"
+import Task from "./Task"
+import TaskDialog from "./TaskDialog"
+import TaskListHeader from "./TaskListHeader"
+import { getTasks } from "../../core/use_cases/getTasks"
+import { handleUpdateTask } from "../../core/use_cases/updateTodo"
+import { addTask, selectedTask } from "../../infrastructure/state/dialogSignal"
+import { handleAddTask } from "../../core/use_cases/addTask"
+import { filteredTasksSignal } from "../../infrastructure/state/taskSignals"
 
 function TasksList() {
   useEffect(() => {
@@ -15,7 +17,7 @@ function TasksList() {
   return (
     <div className="flex flex-col overflow-hidden">
       <Navbar />
-      {selectedTask.value && <TaskDialog onSubmit={updateTask} />}
+      {selectedTask.value && <TaskDialog onSubmit={handleUpdateTask} />}
       {addTask.value && <TaskDialog onSubmit={handleAddTask} />}
       <div className="flex h-full flex-col items-center justify-start overflow-hidden overflow-y-auto border">
         <TaskListHeader />

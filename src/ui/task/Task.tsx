@@ -1,10 +1,10 @@
-import { selectedTask } from "../../state/dialogSignal"
-import { loadingSignal } from "../../state/taskSignals"
 import { TaskType } from "../../core/domain/task"
 import editIcon from "./../assets/edit_icon.svg"
 import deleteIcon from "./../assets/trash_can_icon.svg"
-import { handleDeleteTask } from "../../core/use_cases/task/deleteTask"
-import { handleCompleteTask } from "../../core/use_cases/task/markAsDone"
+import { handleDeleteTask } from "../../core/use_cases/deleteTask"
+import { handleCompleteTask } from "../../core/use_cases/markAsDone"
+import { selectedTask } from "../../infrastructure/state/dialogSignal"
+import { loadingSignal } from "../../infrastructure/state/taskSignals"
 
 type TaskProps = {
   task: TaskType

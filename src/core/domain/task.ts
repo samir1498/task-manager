@@ -1,5 +1,6 @@
 // types.ts
-import { z } from "zod";
+import { effect, signal } from "@preact/signals-react"
+import { z } from "zod"
 
 export const TaskSchema = z
   .object({
@@ -17,6 +18,20 @@ export const TaskSchema = z
     }),
     status: z.enum(["In Progress", "Completed"]).default("In Progress"),
   })
-  .required();
+  .required()
 
-export type TaskType = z.infer<typeof TaskSchema>;
+export type TaskType = z.infer<typeof TaskSchema>
+
+export const taskSucces = signal(false)
+
+export const tasksSignal = signal<TaskType[]>([])
+export const filteredTasksSignal = signal<TaskType[]>([])
+
+export const selectedTask = signal<TaskType | undefined>(undefined)
+export const addTask = signal<boolean>(false)
+
+export const loadingSignal = signal(false)
+
+effect(() => {
+  filteredTasksSignal.value = tasksSignal.value
+})
