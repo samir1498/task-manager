@@ -15,7 +15,6 @@ const AuthApi = {
           headers: {
             "Content-Type": "application/json",
           },
-          withCredentials: true,
         },
       )
       if (response.status === 403) {
@@ -42,7 +41,6 @@ const AuthApi = {
           headers: {
             "Content-Type": "application/json",
           },
-          withCredentials: true,
         },
       )
 
